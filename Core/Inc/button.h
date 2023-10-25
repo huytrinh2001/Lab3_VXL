@@ -24,6 +24,9 @@ int isButton3Pressed();
 void getKeyInput1(void);
 void getKeyInput2(void);
 void getKeyInput3(void);
-void subKeyProcess(void);
+
+void subKeyProcess1(void);
+void subKeyProcess2(void);
+void subKeyProcess3(void);
 
 #endif /* INC_BUTTON_H_ */
