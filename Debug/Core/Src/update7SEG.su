@@ -1,2 +1,2 @@
-update7SEG.c:34:6:updateClockBuffer	4	static
-update7SEG.c:43:6:update7SEG	16	static
+update7SEG.c:19:6:updateClockBuffer	4	static
+update7SEG.c:30:6:update7SEG	16	static

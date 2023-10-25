@@ -19,15 +19,16 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "software_timer.h"
-#include "fsm_automatic.h"
-#include "global.h"
-//#include "led_display.h"
-//#include "button.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "global.h"
+#include "software_timer.h"
+#include "button.h"
+#include "update7SEG.h"
+#include "fsm_automatic.h"
+#include "led_display.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -101,13 +102,58 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   status_a = INIT;
   status_b = INIT;
+
+  setTimer1(25);
+  setTimer2(25);
+  setTimer3(100);
+  setTimer4(100);
+  setTimer5(20);
   while (1)
   {
 	  fsm_automatic_run_a();
 	  fsm_automatic_run_b();
+	  //update7SEG(index_led++);
+	  //updateClockBuffer();
 	  if (isButton1Pressed() == 1){
 		  HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 	  }
+
+	  if (timer5_flag == 1){
+		  updateClockBuffer();
+		  reset7SEG();
+		  if (index_led == 5 ) index_led = 0 ;
+		  update7SEG(index_led++);
+		  setTimer5(20);
+	  }
+
+	  if (timer3_flag == 1){
+		  counter_1st--;
+		  setTimer3(100);
+	  }
+
+	  if (timer4_flag == 1){
+		  counter_2nd--;
+	  	  setTimer4(100);
+	  }
+
+
+
+//	  if (timer3_flag == 1){
+//	  	 reset7SEG();
+//	  	 if (index_led == 5 ) index_led = 0 ;
+//	  	 updateClockBuffer();
+//	  	 update7SEG(index_led++);
+//	  	 setTimer3(25);
+//	  }
+//
+//	  if (timer4_flag == 1){
+//	  	 reset7SEG();
+//	  	 if (index_led == 5 ) index_led = 0 ;
+//	  	 updateClockBuffer();
+//	  	 update7SEG(index_led++);
+//	  	 setTimer4(25);
+//	  }
+
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -210,7 +256,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, LED_RED_Pin|EN0_Pin|EN1_Pin|EN2_Pin
-                          |EN3_Pin, GPIO_PIN_RESET);
+                          |EN3_Pin|EN4_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SEG0_A_Pin|SEG1_B_Pin|SEG2_C_Pin|LED_RED_1_Pin
@@ -225,9 +271,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LED_RED_Pin EN0_Pin EN1_Pin EN2_Pin
-                           EN3_Pin */
+                           EN3_Pin EN4_Pin */
   GPIO_InitStruct.Pin = LED_RED_Pin|EN0_Pin|EN1_Pin|EN2_Pin
-                          |EN3_Pin;
+                          |EN3_Pin|EN4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -251,7 +297,9 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
 	timerRun();
-	getKeyInput();
+	getKeyInput1();
+	getKeyInput2();
+	getKeyInput3();
 }
 /* USER CODE END 4 */
 

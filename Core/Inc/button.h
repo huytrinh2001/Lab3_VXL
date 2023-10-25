@@ -14,8 +14,13 @@
 #define PRESSED_STATE RESET
 
 int isButton1Pressed();
+int isButton2Pressed();
+int isButton3Pressed();
 
-void getKeyInput(void);
+
+void getKeyInput1(void);
+void getKeyInput2(void);
+void getKeyInput3(void);
 void subKeyProcess(void);
 
 #endif /* INC_BUTTON_H_ */

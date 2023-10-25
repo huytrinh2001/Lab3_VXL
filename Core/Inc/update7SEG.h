@@ -10,7 +10,7 @@
 
 extern const int MAX_LED ;
 extern int index_led ;
-extern int led_buffer[4] ;
+extern int led_buffer[5] ;
 
 void update7SEG (int);
 void updateClockBuffer();

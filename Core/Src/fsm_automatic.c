@@ -6,6 +6,7 @@
  */
 
 #include "fsm_automatic.h"
+#include "global.h"
 
 void fsm_automatic_run_a(){
 	switch (status_a) {
@@ -14,7 +15,8 @@ void fsm_automatic_run_a(){
 		HAL_GPIO_WritePin(LED_GREEN_1_GPIO_Port, LED_GREEN_1_Pin, GPIO_PIN_SET);
 		HAL_GPIO_WritePin(LED_YELLOW_1_GPIO_Port, LED_YELLOW_1_Pin, GPIO_PIN_SET);
 		status_a = AUTO_RED;
-		setTimer1(500);
+		counter_1st = red;
+		setTimer1(red * 100);
 
 
 		break;
@@ -25,7 +27,9 @@ void fsm_automatic_run_a(){
 
 		if (timer1_flag == 1){
 			status_a =AUTO_GREEN;
-			setTimer1(300);
+			counter_1st = green;
+			setTimer1(green * 100);
+
 		}
 
 
@@ -37,7 +41,9 @@ void fsm_automatic_run_a(){
 
 		if (timer1_flag == 1){
 			status_a =AUTO_YELLOW;
-			setTimer1(200);
+			counter_1st = yellow;
+			setTimer1(yellow * 100);
+
 		}
 		break;
 	case AUTO_YELLOW:
@@ -47,7 +53,9 @@ void fsm_automatic_run_a(){
 
 		if (timer1_flag == 1){
 			status_a =AUTO_RED;
-			setTimer1(500);
+			counter_1st = red ;
+			setTimer1(red * 100);
+
 		}
 		break;
 	default:
@@ -62,7 +70,8 @@ void fsm_automatic_run_b(){
 			HAL_GPIO_WritePin(LED_GREEN_2_GPIO_Port, LED_GREEN_2_Pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(LED_YELLOW_2_GPIO_Port, LED_YELLOW_2_Pin, GPIO_PIN_SET);
 			status_b = AUTO_GREEN;
-			setTimer2(300);
+			counter_2nd = green;
+			setTimer2(green * 100);
 
 
 			break;
@@ -73,7 +82,9 @@ void fsm_automatic_run_b(){
 
 			if (timer2_flag == 1){
 				status_b =AUTO_GREEN;
-				setTimer2(300);
+				counter_2nd = green;
+				setTimer2(green * 100);
+
 			}
 
 
@@ -85,7 +96,9 @@ void fsm_automatic_run_b(){
 
 			if (timer2_flag == 1){
 				status_b =AUTO_YELLOW;
-				setTimer2(200);
+				counter_2nd = yellow;
+				setTimer2(yellow * 100);
+
 			}
 			break;
 		case AUTO_YELLOW:
@@ -95,7 +108,9 @@ void fsm_automatic_run_b(){
 
 			if (timer2_flag == 1){
 				status_b =AUTO_RED;
-				setTimer2(500);
+				counter_2nd = red;
+				setTimer2(red * 100);
+
 			}
 			break;
 		default:

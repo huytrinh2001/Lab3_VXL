@@ -25,7 +25,8 @@ Core/Src/update7SEG.o: ../Core/Src/update7SEG.c ../Core/Inc/update7SEG.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/global.h ../Core/Inc/software_timer.h ../Core/Inc/button.h \
- ../Core/Inc/main.h
+ ../Core/Inc/main.h ../Core/Inc/update7SEG.h ../Core/Inc/fsm_automatic.h \
+ ../Core/Inc/global.h ../Core/Inc/led_display.h
 
 ../Core/Inc/update7SEG.h:
 
@@ -88,3 +89,11 @@ Core/Src/update7SEG.o: ../Core/Src/update7SEG.c ../Core/Inc/update7SEG.h \
 ../Core/Inc/button.h:
 
 ../Core/Inc/main.h:
+
+../Core/Inc/update7SEG.h:
+
+../Core/Inc/fsm_automatic.h:
+
+../Core/Inc/global.h:
+
+../Core/Inc/led_display.h:
